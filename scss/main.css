@@ -1,0 +1,26 @@
+@charset "UTF-8";
+/*Fichiers paramètres globaux*/
+html, body {
+  width: 100%;
+}
+
+/*Fichiers utils*/
+/* Fonts */
+/*Fichiers de composents*/
+/* Jumbotron */
+.jumbotron {
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.jumbotron__title {
+  font-size: 2.75rem;
+}
+.jumbotron__form-group {
+  padding: 0;
+  margin: 0;
+}
+/*Fichiers de photographer*//*# sourceMappingURL=main.css.map */
