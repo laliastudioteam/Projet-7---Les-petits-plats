@@ -7,35 +7,107 @@
 			src="https://kit.fontawesome.com/8aa73fb75e.js"
 			crossorigin="anonymous"
 		></script>
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+		<link rel="stylesheet" type="text/css" href="./scss/main.css" />
 		<title>Les petits plats</title>
 	</head>
 	<body>
 		<header>
 			<div class="jumbotron">
-                <div class="logo"></div>
-				<h1>
-					Cherchez parmi plus de 1500 recettes du quotidien, cimples et délicieuses
-				</h1>
-				<div class="form-group">
-					<input
-						type="text"
-						class="search-input"
-						plceholder="Recherchez une recette, un ingédient..."
+				<div class="jumbotron__logo">
+					<img
+						src="./assets/img/logo/logo.svg"
+						alt="Logo les petits plats"
+						class="jumbotron__logo__img"
 					/>
-					<button type="submit" class="search-button">
+				</div>
+				<h1 class="jumbotron__title">
+					Cherchez parmi plus de 1500 recettes
+					<br />du quotidien, simples et délicieuses
+				</h1>
+				<div class="jumbotron__form-group">
+					<input
+						id="input-main-search"
+						type="text"
+						class="jumbotron__form-group__search-input"
+						placeholder="Recherchez une recette, un ingrédient..."
+					/>
+					<button type="submit" class="jumbotron__form-group__search-button">
 						<i class="fa fa-search"></i>
 					</button>
 				</div>
 			</div>
 		</header>
 		<main>
-			test 2mm2 init mod test 2
+			<div class="main-container">
+				<ul class="filters-zone">
+					<li class="filters-zone__filter">
+						<div class="filters-zone__filter__select" data-filter="list-ingredients">
+							<div class="filters-zone__filter__select__title">Ingrédients</div>
+							<div class="select-list" id="list-ingredients">
+								<div class="select-list__form-group">
+									<input
+										type="text"
+										id="input-ingredients"
+										class="select-list__form-group__search-input"
+										placeholder="Recherchez..."
+									/>
+									<button type="submit" class="select-list__form-group__search-button">
+										<i class="fa fa-search"></i>
+									</button>
+								</div>
+								<ul class="select-list__list" id="select-ingredients-list"></ul>
+							</div>
+						</div>
+					</li>
+					<li class="filters-zone__filter">
+						<div class="filters-zone__filter__select" data-filter="list-appliances">
+							<div class="filters-zone__filter__select__title">Appareils</div>
+							<div class="select-list" id="list-appliances">
+								<div class="select-list__form-group">
+									<input
+										type="text"
+										class="select-list__form-group__search-input"
+										placeholder="Recherchez..."
+									/>
+									<button type="submit" class="select-list__form-group__search-button">
+										<i class="fa fa-search"></i>
+									</button>
+								</div>
+								<ul class="select-list__list" id="select-appliances-list"></ul>
+							</div>
+						</div>
+					</li>
+					<li class="filters-zone__filter">
+						<div class="filters-zone__filter__select" data-filter="list-ustensils">
+							<div class="filters-zone__filter__select__title">Ustensiles</div>
+							<div class="select-list" id="list-ustensils">
+								<div class="select-list__form-group">
+									<input
+										type="text"
+										class="select-list__form-group__search-input"
+										placeholder="Recherchez..."
+									/>
+									<button type="submit" class="select-list__form-group__search-button">
+										<i class="fa fa-search"></i>
+									</button>
+								</div>
+								<ul class="select-list__list" id="select-ustensils-list"></ul>
+							</div>
+						</div>
+					</li>
+					<li class="filters-zone__number-recipes" id="number-recipes">1550 recettes</li>
+				</ul>
+
+				<div class="card-list" id="recipes-section"></div>
+			</div>
 		</main>
 		<footer></footer>
+		<script src="./scripts/utils/functions.js"></script>
 		<script src="./data/js/recipes.js"></script>
 		<script src="./scripts/utils/loadData.js"></script>
+		<script src="./scripts/templates/recipe.js"></script>
+		<script src="./scripts/templates/selects.js"></script>
+		<script src="./scripts/pages/index.js"></script>
 	</body>
 </html>

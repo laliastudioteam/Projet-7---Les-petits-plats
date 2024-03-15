@@ -1,0 +1,56 @@
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes fadeInOut {
+    0% {
+        -webkit-opacity: 1;
+        opacity: 1;
+    }
+
+    72% {
+        -webkit-opacity: 1;
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-opacity: 0;
+        opacity:0;
+        /* Hack Safari */
+        visibility: hidden;
+        display:none;
+    }
+}
+
+@keyframes bounceOver {
+    0% {
+        transform: translateY(0%) scale(1);
+    }
+
+    50% {
+        transform: translateY(0%) scale(1.4);
+    }
+    100% {
+        transform: translateY(0%) scale(1);
+    }
+}
+
+@keyframes gelatineMe {
+    0% {
+        transform: scale(1, 1);
+    }
+    25% {
+        transform: scale(0.9, 1.1);
+    }
+    50% {
+        transform: scale(1.1, 0.9);
+    }
+    75% {
+        transform: scale(0.95, 1.05);
+    }
+}

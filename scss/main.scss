@@ -1,11 +1,17 @@
+/*Variable*/
+@import "./utils/variables";
+
 /*Fichiers paramètres globaux*/
 @import "./base/normalize";
 
+
 /*Fichiers utils*/
-@import "./utils/variables";
 @import "./utils/animations";
 
-/*Fichiers de composents*/
+/*Fichiers de composants*/
 @import "./components/jumbotron";
+@import "./components/card";
+@import "./components/filter";
+@import "./components/select";
 
-/*Fichiers de photographer*/
+

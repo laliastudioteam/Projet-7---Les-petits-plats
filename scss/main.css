@@ -1,26 +1,436 @@
 @charset "UTF-8";
+/*Variable*/
+/* Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@200..800&display=swap");
+/* Breakpoints */
+/* Colors */
 /*Fichiers paramètres globaux*/
 html, body {
   width: 100%;
+  margin: 0px;
+  background: #E5E5E5;
+}
+
+.main-container {
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /*Fichiers utils*/
-/* Fonts */
-/*Fichiers de composents*/
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadeInOut {
+  0% {
+    -webkit-opacity: 1;
+    opacity: 1;
+  }
+  72% {
+    -webkit-opacity: 1;
+    opacity: 1;
+  }
+  100% {
+    -webkit-opacity: 0;
+    opacity: 0;
+    /* Hack Safari */
+    visibility: hidden;
+    display: none;
+  }
+}
+@keyframes bounceOver {
+  0% {
+    transform: translateY(0%) scale(1);
+  }
+  50% {
+    transform: translateY(0%) scale(1.4);
+  }
+  100% {
+    transform: translateY(0%) scale(1);
+  }
+}
+@keyframes gelatineMe {
+  0% {
+    transform: scale(1, 1);
+  }
+  25% {
+    transform: scale(0.9, 1.1);
+  }
+  50% {
+    transform: scale(1.1, 0.9);
+  }
+  75% {
+    transform: scale(0.95, 1.05);
+  }
+}
+/*Fichiers de composants*/
 /* Jumbotron */
 .jumbotron {
   width: 100%;
+  height: auto;
   margin: 0px;
   padding: 0px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  background-image: url("../assets/img/background/background_home.jpg");
+  -o-object-fit: cover;
+     object-fit: cover;
+  background-position: center center;
+}
+@media screen and (max-width: 600px) {
+  .jumbotron {
+    justify-content: center;
+  }
+}
+@media screen and (min-width: 768px) {
+  .jumbotron {
+    justify-content: flex-start;
+  }
+}
+.jumbotron__logo {
+  margin-top: 50px;
+  margin-left: 70px;
+}
+@media screen and (max-width: 600px) {
+  .jumbotron__logo {
+    width: 200px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+@media screen and (min-width: 768px) {
+  .jumbotron__logo {
+    width: 70px;
+  }
+}
+.jumbotron__logo__img {
+  width: 200px;
 }
 .jumbotron__title {
-  font-size: 2.75rem;
+  color: #FFD15B;
+  font-weight: 400;
+  margin-top: 200px;
+  text-transform: uppercase;
+  text-align: center;
+  font-family: "Anton", sans-serif;
+}
+@media screen and (max-width: 600px) {
+  .jumbotron__title {
+    font-size: 1.75rem;
+  }
+}
+@media screen and (min-width: 768px) {
+  .jumbotron__title {
+    font-size: 2.75rem;
+  }
 }
 .jumbotron__form-group {
   padding: 0;
-  margin: 0;
+  margin: 0px 0px 90px 0px;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: baseline;
 }
-/*Fichiers de photographer*//*# sourceMappingURL=main.css.map */
+.jumbotron__form-group__search-input {
+  width: 100%;
+  height: 72px;
+  border-radius: 10px;
+  font-family: "Manrope", sans-serif;
+  color: #7A7A7A;
+  padding-left: 35px;
+  border: 0;
+  outline: none;
+}
+@media screen and (max-width: 600px) {
+  .jumbotron__form-group__search-input {
+    font-size: 0.7rem;
+  }
+}
+@media screen and (min-width: 768px) {
+  .jumbotron__form-group__search-input {
+    font-size: 1rem;
+  }
+}
+.jumbotron__form-group__search-input:focus::-webkit-input-placeholder {
+  opacity: 0;
+}
+.jumbotron__form-group__search-input:focus:-moz-placeholder {
+  opacity: 0;
+}
+.jumbotron__form-group__search-input:focus::-moz-placeholder {
+  opacity: 0;
+}
+.jumbotron__form-group__search-input:focus:-ms-input-placeholder {
+  opacity: 0;
+}
+.jumbotron__form-group__search-button {
+  margin-left: -65px;
+  width: 50px;
+  height: 50px;
+  background-color: #1B1B1B;
+  color: #ffffff;
+  border-radius: 10px;
+  margin-top: 10px;
+  border: none;
+  cursor: pointer;
+}
+.jumbotron__form-group__search-button:focus {
+  background-color: #FFD15B;
+  color: #1B1B1B;
+}
+.jumbotron__form-group__search-button:hover {
+  background-color: #FFD15B;
+  color: #1B1B1B;
+}
+
+.card-list {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fill, 30%);
+  justify-content: space-between;
+  background-color: red;
+  grid-gap: 50xpx;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media screen and (max-width: 768px) {
+  .card-list {
+    grid-template-columns: repeat(auto-fill, 100%);
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1200px) {
+  .card-list {
+    grid-template-columns: repeat(auto-fill, 45%);
+  }
+}
+
+.card-recipe {
+  background-color: #ffffff;
+  position: relative;
+  height: auto;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 21px;
+  overflow: hidden;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+  width: 100%;
+  opacity: 0;
+  animation-name: fadeIn;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+.card-recipe:hover {
+  box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  transform: scale(1.01);
+}
+.card-recipe__header {
+  transition: all 0.5s ease-in-out;
+}
+.card-recipe__header__picture {
+  height: 250px;
+  background-size: cover;
+  background-position: center center;
+  transition: all 0.5s ease-in-out;
+}
+.card-recipe__header:hover > .card-recipe__header__picture {
+  filter: grayscale(50%);
+  -webkit-filter: grayscale(50%);
+  -moz-filter: grayscale(50%);
+}
+.card-recipe__header:hover + .card-recipe__time {
+  transform: scale(1.2);
+  background-color: #ffffff;
+  color: #1B1B1B;
+}
+.card-recipe__time {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  border-radius: 20px;
+  padding: 5px 10px;
+  background-color: #FFD15B;
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  transition: all 0.5s ease-in-out;
+}
+.card-recipe__content {
+  margin-top: 10px;
+  padding: 25px;
+}
+.card-recipe__content__title {
+  font-family: "Anton", sans-serif;
+  font-size: 18px;
+  color: #000000;
+  margin-bottom: 10px;
+}
+.card-recipe__content__recipe__title {
+  font-family: "Manrope", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #1B1B1B;
+}
+.card-recipe__content__recipe__text {
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #7A7A7A;
+}
+.card-recipe__content__ingredients__title {
+  font-family: "Manrope", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #1B1B1B;
+  margin-bottom: 10px;
+}
+.card-recipe__content__ingredients__list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+}
+.card-recipe__content__ingredients__list__ingredient {
+  width: 40%;
+}
+.card-recipe__content__ingredients__list__ingredient__title {
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1B1B1B;
+}
+.card-recipe__content__ingredients__list__ingredient__text {
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #7A7A7A;
+}
+
+.filters-zone {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 75px;
+  margin: 0px;
+  background: green;
+  list-style: none;
+  justify-items: center;
+  align-items: center;
+  width: 100%;
+  padding: 0px;
+}
+@media screen and (max-width: 768px) {
+  .filters-zone {
+    flex-direction: column;
+    height: auto;
+  }
+}
+.filters-zone__number-recipes {
+  font-family: "Anton", sans-serif;
+  font-size: 21px;
+  font-weight: 400;
+}
+.filters-zone__filter {
+  display: inline-flex;
+  position: relative;
+  z-index: 900;
+}
+.filters-zone__filter__select {
+  border-radius: 11px;
+  background-color: #ffffff;
+  position: absolute;
+  top: 0px;
+  margin: 0px;
+  min-width: 200px;
+}
+.filters-zone__filter__select__title {
+  font-family: "Manrope", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  height: 22px;
+  padding: 17px 16px 17px 16px;
+}
+.filters-zone__filter__select__title:after {
+  content: "";
+  color: black;
+  display: inline-block;
+  float: right;
+  width: 0.5rem;
+  height: 0.5rem;
+  color: black;
+  border-bottom: 1px solid currentColor;
+  border-left: 1px solid currentColor;
+  border-bottom-left-radius: 2px;
+  transform: rotate(45deg) translate(50%, 0%);
+  transform-origin: center center;
+  transition: transform ease-in-out 100ms;
+}
+.filters-zone__filter__select__active .filters-zone__filter__select__title {
+  color: #7A7A7A;
+}
+.filters-zone__filter__select__active .filters-zone__filter__select__title:after {
+  transform: rotate(315deg) translate(30%, 30%);
+}
+
+.select-list {
+  display: none;
+  width: 200px;
+}
+.select-list__active {
+  display: block;
+}
+.select-list__list {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  height: 200px;
+  overflow-y: scroll;
+}
+.select-list__list__option {
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 10px;
+}
+.select-list__list__option__selected {
+  background-color: #FFD15B;
+}
+.select-list__form-group {
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.select-list__form-group__search-input {
+  width: 100%;
+  border: 1px solid #7A7A7A;
+  height: 36px;
+  padding: 0px 10px;
+  box-sizing: border-box;
+  display: inline-block;
+}
+.select-list__form-group__search-button {
+  border: none;
+  margin-left: -40px;
+  display: inline-block;
+  background-color: transparent;
+}/*# sourceMappingURL=main.css.map */
