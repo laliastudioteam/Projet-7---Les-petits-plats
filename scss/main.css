@@ -5,7 +5,8 @@
 /* Breakpoints */
 /* Colors */
 /*Fichiers paramètres globaux*/
-html, body {
+html,
+body {
   width: 100%;
   margin: 0px;
   background: #E5E5E5;
@@ -17,6 +18,22 @@ html, body {
   margin-right: 10%;
   margin-left: auto;
   margin-right: auto;
+}
+
+.message-no-recipe-cl {
+  font-family: "Manrope", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  display: none;
+  margin-top: 50px;
+}
+.message-no-recipe-cl__list {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+}
+.message-no-recipe-cl__list__option {
+  display: block;
 }
 
 /*Fichiers utils*/
@@ -200,7 +217,6 @@ html, body {
   width: 100%;
   grid-template-columns: repeat(auto-fill, 30%);
   justify-content: space-between;
-  background-color: red;
   grid-gap: 50xpx;
   margin-top: 15px;
   margin-bottom: 15px;
@@ -329,7 +345,6 @@ html, body {
   justify-content: space-between;
   height: 75px;
   margin: 0px;
-  background: green;
   list-style: none;
   justify-items: center;
   align-items: center;
@@ -339,7 +354,7 @@ html, body {
 @media screen and (max-width: 768px) {
   .filters-zone {
     flex-direction: column;
-    height: auto;
+    height: 225px;
   }
 }
 .filters-zone__number-recipes {
@@ -352,6 +367,12 @@ html, body {
   position: relative;
   z-index: 900;
 }
+@media screen and (max-width: 768px) {
+  .filters-zone__filter {
+    margin-bottom: 30px;
+    width: 100%;
+  }
+}
 .filters-zone__filter__select {
   border-radius: 11px;
   background-color: #ffffff;
@@ -359,6 +380,11 @@ html, body {
   top: 0px;
   margin: 0px;
   min-width: 200px;
+}
+@media screen and (max-width: 768px) {
+  .filters-zone__filter__select {
+    width: 100%;
+  }
 }
 .filters-zone__filter__select__title {
   font-family: "Manrope", sans-serif;
@@ -392,11 +418,18 @@ html, body {
 .select-list {
   display: none;
   width: 200px;
+  z-index: 952;
+}
+@media screen and (max-width: 768px) {
+  .select-list {
+    width: 100%;
+  }
 }
 .select-list__active {
   display: block;
 }
 .select-list__list {
+  margin-top: 10px;
   list-style: none;
   padding: 0;
   width: 100%;

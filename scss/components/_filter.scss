@@ -2,54 +2,63 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-height:75px;
-margin:0px;
-background:green;
-    list-style:none;
+    height: 75px;
+    margin: 0px;
+
+    list-style: none;
     justify-items: center;
     align-items: center;
-width:100%;
-padding:0px;
+    width: 100%;
+    padding: 0px;
     @media screen and (max-width: $breakpoint-2) {
-        flex-direction:column;
-        height:auto;
+        flex-direction: column;
+        height:225px;
+ 
     }
-    &__number-recipes{
-font-family:$font-family-1;
-font-size:21px;
-font-weight: 400;
+    &__number-recipes {
+        font-family: $font-family-1;
+        font-size: 21px;
+        font-weight: 400;
     }
     &__filter {
         display: inline-flex;
 
         position: relative;
         z-index: 900;
-       
+
+        @media screen and (max-width: $breakpoint-2) {
+        margin-bottom:30px;
+        width:100%;
+        }
+
+
         &__select {
             border-radius: 11px;
             background-color: $color-4;
             position: absolute;
-            top:0px;margin:0px;
- min-width:200px;
-          
- 
+            top: 0px;
+            margin: 0px;
+            min-width: 200px;
+            @media screen and (max-width: $breakpoint-2) {
+
+                width:100%;
+                }
 
             &__title {
-
                 font-family: $font-family-2;
                 font-size: 16px;
                 font-weight: 500;
-                height:22px;
+                height: 22px;
                 padding: 17px 16px 17px 16px;
 
-               &:after {
+                &:after {
                     content: "";
-                    color:black;
+                    color: black;
                     display: inline-block;
                     float: right;
                     width: 0.5rem;
                     height: 0.5rem;
-                    color:black;
+                    color: black;
                     border-bottom: 1px solid currentColor;
                     border-left: 1px solid currentColor;
                     border-bottom-left-radius: 2px;
@@ -57,23 +66,14 @@ font-weight: 400;
                     transform-origin: center center;
                     transition: transform ease-in-out 100ms;
                 }
-                
             }
 
-            &__active
-                &__title {
+            &__active &__title {
+                color: $color-2;
 
-                
-                color:$color-2;
-            
-    
-                   &:after {
-                    
+                &:after {
                     transform: rotate(315deg) translate(30%, 30%);
-                   
-                    }
-                    
-                
+                }
             }
         }
     }

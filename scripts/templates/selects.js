@@ -4,7 +4,7 @@ const selectedIngredients = new Array();
 const selectedAppliances = new Array();
 const selectedUstensils = new Array();
 
-function closeSelect(){
+function clickOutsideSelect(){
     const selectIngredientsList2 = document.querySelectorAll(
 		".filters-zone__filter__select"
 	);
@@ -13,22 +13,33 @@ function closeSelect(){
 
         if (!filter.contains(event.target)) {
             const menuList = document.getElementById(filter.getAttribute("data-filter"));
-            menuList.classList.remove("select-list__active");
-			filter.classList.remove("filters-zone__filter__select__active");
+	
+            closeSelect(menuList,filter);
         }
     })
       });
 }
-function openSelectList() {
+function clickInsideSelect() {
 	const titleFilters = document.querySelectorAll(".filters-zone__filter__select");
 
 	titleFilters.forEach(filter => {
 		filter.addEventListener("click", () => {
 			const menuList = document.getElementById(filter.getAttribute("data-filter"));
-            menuList.classList.add("select-list__active");
-			filter.classList.add("filters-zone__filter__select__active");
+			
+				openSelect(menuList,filter);
+			
 		});
 	});
+}
+
+
+function openSelect(select,filter){
+	select.classList.add("select-list__active");
+	filter.classList.add("filters-zone__filter__select__active");
+}
+function closeSelect(select,filter){
+	select.classList.remove("select-list__active");
+	filter.classList.remove("filters-zone__filter__select__active");
 }
 
 function setIngredientsListSelect(ingredients) {
@@ -39,8 +50,10 @@ function setIngredientsListSelect(ingredients) {
 	ingredients.forEach(ingredient => {
 		let ingredientOption = document.createElement("li");
 		ingredientOption.classList.add("select-list__list__option");
+		
 		ingredientOption.textContent = ingredient;
 		selectIngredientsList.appendChild(ingredientOption);
+	
 	});
 }
 
@@ -130,9 +143,7 @@ function selectOptionClick() {
 			if (selectedUstensils.indexOf(item) !== -1) {
 				console.log("suppression de la classe");
 				let index = selectedUstensils.indexOf(item);
-
 				selectedUstensils.splice(index, 1);
-
 				item.classList.remove("select-list__list__option__selected");
 			} else {
 				console.log("ajout de la classe");
@@ -167,6 +178,63 @@ function searchIntoIngredientsOptions() {
 			selectOptionClick();
 		} else {
 			setIngredientsListSelect(fullRecipesComponentsListOrdered["ingredients"]);
+			selectOptionClick();
+		}
+	});
+}
+
+function searchIntoUstensilsOptions() {
+	console.log("Search init");
+
+	const inputUstensils = document.getElementById("input-ustensils");
+	inputUstensils.addEventListener("input", () => {
+		const inputUstensilsValue = inputUstensils.value;
+		const inputUstensilsLength = inputUstensilsValue.length;
+
+		if (inputUstensilsLength >= minSearchLength) {
+			console.log(
+				"Filtrage possible : " + inputUstensilsLength + " caractères entrés"
+			);
+
+			console.log("Search for : " + inputUstensilsValue);
+
+			const filteredArr = fullRecipesComponentsListOrdered["ustensils"].filter(
+				val => val.toLowerCase().includes(inputUstensilsValue)
+			);
+			console.log(filteredArr);
+			setUstensilsListSelect(filteredArr);
+			selectOptionClick();
+		} else {
+			setUstensilsListSelect(fullRecipesComponentsListOrdered["ustensils"]);
+			selectOptionClick();
+		}
+	});
+}
+
+function searchIntoAppliancesOptions() {
+	console.log("Search init");
+
+	const inputAppliances = document.getElementById("input-appliances");
+	inputAppliances.addEventListener("input", () => {
+		const inputAppliancesValue = inputAppliances.value;
+		const inputAppliancesLength = inputAppliancesValue.length;
+
+		if (inputAppliancesLength >= minSearchLength) {
+			console.log(
+				"Filtrage possible : " + inputAppliancesLength + " caractères entrés"
+			);
+
+			console.log("Search for : " + inputAppliancesValue);
+
+			const filteredArr = fullRecipesComponentsListOrdered["appliances"].filter(
+				val => val.toLowerCase().includes(inputAppliancesValue)
+			);
+			console.log(filteredArr);
+			setAppliancesListSelect(filteredArr);
+			selectOptionClick();
+		} else {
+			setAppliancesListSelect(fullRecipesComponentsListOrdered["appliances"]);
+			selectOptionClick();
 		}
 	});
 }
