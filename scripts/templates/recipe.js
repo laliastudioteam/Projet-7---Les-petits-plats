@@ -1,5 +1,3 @@
-
-
 function recipeTemplate(data) {
 	const {
 		appliance,
@@ -45,7 +43,12 @@ function recipeTemplate(data) {
 		/* Recipe Title Content Bloc */
 		const titleRecipe = document.createElement("div");
 		titleRecipe.classList.add("card-recipe__content__title");
-		titleRecipe.textContent = name;
+		if (inputMainSearch.value.length >= minSearchLength) {
+			const regTitle = new RegExp("(" + inputMainSearch.value + ")", "gi");
+			titleRecipe.innerHTML = name.replace(regTitle, "<mark>$1</mark>");
+		} else {
+			titleRecipe.textContent = name;
+		}
 		contentRecipe.appendChild(titleRecipe);
 
 		/* Recipe conbtent recipe Bloc */
@@ -62,7 +65,16 @@ function recipeTemplate(data) {
 		/* Recipe Content Recipe Text Bloc */
 		const contentRecipeTextRecipe = document.createElement("p");
 		contentRecipeTextRecipe.classList.add("card-recipe__content__recipe__text");
-		contentRecipeTextRecipe.textContent = description;
+
+		if (inputMainSearch.value.length >= minSearchLength) {
+			const regDescription = new RegExp("(" + inputMainSearch.value + ")", "gi");
+			contentRecipeTextRecipe.innerHTML = description.replace(
+				regDescription,
+				"<mark>$1</mark>"
+			);
+		} else {
+			contentRecipeTextRecipe.innerHTML = description;
+		}
 		contentRecipeRecipe.appendChild(contentRecipeTextRecipe);
 
 		/* Recipe Ingredients Recipe Bloc */
@@ -100,7 +112,14 @@ function recipeTemplate(data) {
 			contentIngredientTitleIngredientsRecipe.classList.add(
 				"card-recipe__content__ingredients__list__ingredient__title"
 			);
-			contentIngredientTitleIngredientsRecipe.textContent = ingredient.ingredient;
+			if (inputMainSearch.value.length >= minSearchLength) {
+				let regIngredient = new RegExp("(" + inputMainSearch.value + ")", "gi");
+				contentIngredientTitleIngredientsRecipe.innerHTML =
+					ingredient.ingredient.replace(regIngredient, "<mark>$1</mark>");
+			} else {
+				contentIngredientTitleIngredientsRecipe.textContent = ingredient.ingredient;
+			}
+
 			contentIngredientIngredientsRecipe.appendChild(
 				contentIngredientTitleIngredientsRecipe
 			);
@@ -110,9 +129,12 @@ function recipeTemplate(data) {
 			contentIngredientTextIngredientsRecipe.classList.add(
 				"card-recipe__content__ingredients__list__ingredient__text"
 			);
-			contentIngredientTextIngredientsRecipe.textContent = ingredient.quantity;
-			contentIngredientTextIngredientsRecipe.textContent +=
-				typeof ingredient.unit != "undefined" ? " " + ingredient.unit : "";
+		
+				contentIngredientTextIngredientsRecipe.textContent = ingredient.quantity;
+				contentIngredientTextIngredientsRecipe.textContent +=
+					typeof ingredient.unit != "undefined" ? " " + ingredient.unit : "";
+			
+
 			contentIngredientIngredientsRecipe.appendChild(
 				contentIngredientTextIngredientsRecipe
 			);

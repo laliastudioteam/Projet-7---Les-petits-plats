@@ -22,8 +22,10 @@
       font-size: 14px;
       font-weight: 400;
       padding: 10px;
+      cursor:pointer;
       &__selected {
         background-color: $color-1;
+        cursor:no-drop;
       }
     }
   }

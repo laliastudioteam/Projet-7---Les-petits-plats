@@ -1,0 +1,23 @@
+#display-informations{
+    position:absolute;
+    top: 10px;
+    left:0px;
+    background-color: $color-1;
+    font-family: $font-family-2;
+    font-size: 14px;
+color:$color-3;
+padding:10px;
+border:1px solid $color-4;
+    border-radius: 0px 21px 21px 0px;
+    box-shadow: 0px 4px 15px (rgba(#000000, 15%));
+    box-sizing: border-box;
+    opacity: 0;
+
+}
+
+.display-change-animation{
+  animation-name: slideInLeft;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+

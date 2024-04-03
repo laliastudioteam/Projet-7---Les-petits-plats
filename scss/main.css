@@ -20,6 +20,11 @@ body {
   margin-right: auto;
 }
 
+mark {
+  background-color: #ffffff;
+  color: #FFD15B;
+}
+
 .message-no-recipe-cl {
   font-family: "Manrope", sans-serif;
   font-size: 16px;
@@ -43,6 +48,28 @@ body {
   }
   100% {
     opacity: 1;
+  }
+}
+.slideInLeft {
+  animation-name: slideInLeft;
+  animation-duration: 3s;
+  animation-fill-mode: both;
+}
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(-100%);
+    visibility: visible;
+    opacity: 1;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
 @keyframes fadeInOut {
@@ -246,13 +273,17 @@ body {
   width: 100%;
   opacity: 0;
   animation-name: fadeIn;
-  animation-duration: 2s;
+  animation-duration: 2.7730127048s;
   animation-fill-mode: forwards;
 }
 .card-recipe:hover {
   box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.05);
   cursor: pointer;
   transform: scale(1.01);
+}
+.card-recipe:hover mark {
+  background-color: #FFD15B;
+  color: #7A7A7A;
 }
 .card-recipe__header {
   transition: all 0.5s ease-in-out;
@@ -361,6 +392,7 @@ body {
   font-family: "Anton", sans-serif;
   font-size: 21px;
   font-weight: 400;
+  margin-top: 55px;
 }
 .filters-zone__filter {
   display: inline-flex;
@@ -441,9 +473,11 @@ body {
   font-size: 14px;
   font-weight: 400;
   padding: 10px;
+  cursor: pointer;
 }
 .select-list__list__option__selected {
   background-color: #FFD15B;
+  cursor: no-drop;
 }
 .select-list__form-group {
   padding: 0;
@@ -466,4 +500,84 @@ body {
   margin-left: -40px;
   display: inline-block;
   background-color: transparent;
+}
+
+.zone-badges-selected-options {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  margin-top: 30px;
+  list-style: none;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+.badge-option {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  align-items: center;
+  background-color: #FFD15B;
+  padding: 15px;
+  border-radius: 20px;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
+  margin: 20px 10px 0px 0px;
+  cursor: pointer;
+  opacity: 0;
+  animation-name: fadeIn;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+.badge-option__text {
+  color: #1B1B1B;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: "Manrope", sans-serif;
+}
+.badge-option__close {
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: "Manrope", sans-serif;
+  border: 1px solid #ffffff;
+  padding: 5px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-left: 15px;
+}
+.badge-option__close:hover {
+  background-color: #ffffff;
+  color: #1B1B1B;
+  box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.05);
+}
+.badge-option:hover {
+  box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.05);
+}
+.badge-option:hover .badge-option__close {
+  background-color: #ffffff;
+  color: #1B1B1B;
+  box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.05);
+}
+
+#display-informations {
+  position: absolute;
+  top: 10px;
+  left: 0px;
+  background-color: #FFD15B;
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  color: #1B1B1B;
+  padding: 10px;
+  border: 1px solid #ffffff;
+  border-radius: 0px 21px 21px 0px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+  opacity: 0;
+}
+
+.display-change-animation {
+  animation-name: slideInLeft;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
 }/*# sourceMappingURL=main.css.map */

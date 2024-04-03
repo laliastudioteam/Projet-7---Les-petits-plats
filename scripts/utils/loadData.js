@@ -1,5 +1,17 @@
 // GO Fetch real user data
 
+function filterSelectListOptionsSelected(data){
+
+
+consoleOutput(data,1,1);
+
+	consoleOutput(selectedIngredients,1,1);
+	consoleOutput(selectedAppliances,1,1)
+	consoleOutput(selectedUstensils,1,1);
+
+}
+
+
 function getFullIngredientsList(data) {
 	const fullIngredientsListFull = new Array();
 	data.forEach(item => {
