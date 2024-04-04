@@ -12,7 +12,7 @@
     justify-content: flex-start;
     flex-direction: row;
     align-items: center;
-    background-color: $color-1;
+   // background-color: $color-1;
     padding: 15px;
     border-radius: 20px;
     box-sizing: border-box;
@@ -23,9 +23,20 @@
             animation-name: fadeIn;
             animation-duration: 2s;
             animation-fill-mode: forwards;
-
+&__ingredient{
+    background-color: $color-1; 
+    color:$color-3; 
+}
+&__appliance{
+    background-color: $color-2; 
+    color:$color-4; 
+}
+&__ustensil{
+    background-color: $color-3; 
+    color:$color-1; 
+}
     &__text {
-        color: $color-3;
+       // color: $color-3;
         font-size: 14px;
         font-weight: 500;
         font-family: $font-family-2;

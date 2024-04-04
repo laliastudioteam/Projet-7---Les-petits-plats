@@ -24,6 +24,7 @@ function consoleOutput(data, date = 0, line = 0) {
 		if (line == 1) {
 			console.log(console.trace());
 		}
+		console.log(data);
 	}
-	//console.log(data);
+
 }

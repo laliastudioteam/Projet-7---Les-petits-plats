@@ -59,14 +59,19 @@ function mainSearch() {
 
 function search() {
 	const inputMainSearchValue = inputMainSearch.value.toLowerCase();
+
 	consoleOutput("searching for :" + inputMainSearch.value, 1, 1);
 	const inputMainSearchLength = inputMainSearchValue.length;
 
+
+	let filteredArr = new Array();
+	let preFilteredArr = new Array();
+
 	// First Search method
-	if (searchMethod == 1) {
+	if (searchMethod["method"] == 1) {
 		// If search min lenght ok
 		if (inputMainSearchLength >= minSearchLength) {
-			console.log("search avec keyword");
+			consoleOutput("Recherche avec mot clé", 1, 1);
 			preFilteredArr = recipes.filter(
 				d =>
 					d.name.toLowerCase().includes(inputMainSearchValue) ||
@@ -76,106 +81,221 @@ function search() {
 			changeInformations(
 				"Recherche de : " + inputMainSearchValue + " parmi les recettes"
 			);
-
+			console.log(typeof preFilteredArr);
 		} else {
-			console.log("search sans keyword");
+			consoleOutput("Recherche sans mot clé", 1, 1);
 			preFilteredArr = recipes;
+			console.log(typeof preFilteredArr);
 		}
-		console.log(preFilteredArr );
+
 		//	consoleOutput(preFilteredArr, 1, 1);
 
-				// Method by length
-				if (searchMethod1Type == "length") {
-					filteredArr = preFilteredArr.filter(
-						item =>
-						(selectedAppliances.length === 0 || selectedAppliances.includes(item.appliance)) &&
-							item.ingredients.filter(
-								ingredient => selectedIngredients.indexOf(ingredient.ingredient) + 1
-							).length >= selectedIngredients.length &&
-							item.ustensils.filter(
-								ustensil => selectedUstensils.indexOf(capitalizeWord(ustensil)) + 1
-							).length >= selectedUstensils.length
-					);
-				} else if (searchMethod1Type == "every") {
-				const	filteredArr = preFilteredArr.filter(
-						item =>
-						(selectedAppliances.length === 0 || selectedAppliances.includes(item.appliance)) &&
-							selectedIngredients.every(ingredient =>
-								item.ingredients.includes(ingredient)
-							) &&
-							item.ustensils.filter(
-								selectedUstensils.every(ustensil => item.ustensils.includes(ustensil))
-							)
-					);
-				}
-			
+		// Method by length
+		if (searchMethod["type"] == "length") {
+			consoleOutput("Recherche length", 1, 1);
+			filteredArr = preFilteredArr.filter(
+				item =>
+					(selectedAppliances.length === 0 ||
+						selectedAppliances.includes(item.appliance)) &&
+					item.ingredients.filter(
+						ingredient => selectedIngredients.indexOf(ingredient.ingredient) + 1
+					).length >= selectedIngredients.length &&
+					item.ustensils.filter(
+						ustensil => selectedUstensils.indexOf(capitalizeWord(ustensil)) + 1
+					).length >= selectedUstensils.length
+			);
+		} else if (searchMethod["type"] == "every") {
+			consoleOutput("Recherche every", 1, 1);
+			filteredArr = preFilteredArr.filter(
+				item =>
+					(selectedAppliances.length === 0 ||
+						selectedAppliances.includes(item.appliance)) &&
+					item.ingredients.filter(
+						selectedIngredients.every(ingredient => item.ingredients.includes(ingredient))
+					) &&
+					item.ustensils.filter(
+						selectedUstensils.every(ustensil =>
+							item.ustensils.includes(capitalizeWord(ustensil))
+						)
+					)
+			);
+		} else {
+			consoleOutput("Type de recherche invalide", 1, 1);
+		}
 
-			//	Different try methodes / code
-			//	(selectedAppliances.length === 0 || selectedAppliances.includes(item.appliance))
-			//	selectedIngredients.every(ingredient => item.ingredients.includes(ingredient));
+		//	Different try methodes / code
+		//	(selectedAppliances.length === 0 || selectedAppliances.includes(item.appliance))
+		//	selectedIngredients.every(ingredient => item.ingredients.includes(ingredient));
 
-			consoleOutput("Après second filtre", 1, 1);
-			consoleOutput(filteredArr, 1, 1);
+		consoleOutput("Après second filtre", 1, 1);
+		consoleOutput(filteredArr, 1, 1);
 
-			// Simple Methode through whole data
-			//const filteredArr = recipes.filter(obj =>
-			//		JSON.stringify(obj)
-			//			.toLowerCase()
-			//			.includes(inputMainSearchValue.toString().toLowerCase())
-			//	);
+		// Simple Methode through whole data
+		//const filteredArr = recipes.filter(obj =>
+		//		JSON.stringify(obj)
+		//			.toLowerCase()
+		//			.includes(inputMainSearchValue.toString().toLowerCase())
+		//	);
 
-			filterSelectListOptionsSelected(filteredArr);
+		filterSelectListOptionsSelected(filteredArr);
 
-			displayData(filteredArr);
+		displayData(filteredArr);
 
-			updateRecipesNumber(filteredArr);
-			clearSelectOptionsListeners();
-			setIngredientsListSelect(getFullIngredientsList(filteredArr));
+		updateRecipesNumber(filteredArr);
+		clearSelectOptionsListeners();
+		setIngredientsListSelect(getFullIngredientsList(filteredArr));
 
-			setUstensilsListSelect(getFullUstensilsList(filteredArr));
+		setUstensilsListSelect(getFullUstensilsList(filteredArr));
 
-			setAppliancesListSelect(getFullAppliancesList(filteredArr));
-		
+		setAppliancesListSelect(getFullAppliancesList(filteredArr));
+
 		// Second Search method
-	} else if (searchMethod == 2) {
+	} else if (searchMethod["method"] == 2) {
+
+		let preFilteredArrRecipes = new Array();
+		console.log("second search method");
 		// If search min lenght ok
 		if (inputMainSearchLength >= minSearchLength) {
-			let preFilteredArr = new Array();
-			//const preFilteredArr = recipes.filter(
-			//d =>
-			//		d.name.toLowerCase().includes(inputMainSearchValue) ||
-			//		d.description.toLowerCase().includes(inputMainSearchValue) ||
-			//		JSON.stringify(d.ingredients).toLowerCase().includes(inputMainSearchValue)
-			//	);
-
 			recipes.forEach(item => {
-				if (item.name.toLowerCase().indexOf(inputMainSearchValue) !== -1) {
-					preFilteredArr.push(item);
+				if (
+					item.name.toLowerCase().indexOf(inputMainSearchValue) !== -1 ||
+					item.description.toLowerCase().indexOf(inputMainSearchValue) !== -1 ||
+					JSON.stringify(item.ingredients).toLowerCase().indexOf(inputMainSearchValue) !==
+						-1
+				) {
+					preFilteredArrRecipes.push(item);
 				}
 			});
 
+			console.log(preFilteredArrRecipes);
 			consoleOutput("Apres filter", 1, 1);
-			consoleOutput(preFilteredArr, 1, 1);
+			consoleOutput(preFilteredArrRecipes, 1, 1);
 			changeInformations(
 				"Recherche de : " + inputMainSearchValue + " parmi les recettes"
 			);
-
-			const filteredArr = preFilteredArr;
 		} else {
+			recipes.forEach(item => {
+				preFilteredArrRecipes.push(item);
+			});
 		}
+
+		console.log(typeof preFilteredArrRecipes);
+		console.log(preFilteredArrRecipes);
+
+
+		let preFilteredArrAppliances=new Array();
+		// Appliance search
+		preFilteredArrRecipes.forEach(item => {
+
+
+			if (selectedAppliances.length > 0) {
+				let numberAppliance = 0;
+			
+				selectedAppliances.forEach(appliance => {
+			
+					if (appliance == item.appliance) numberAppliance++;
+				});
+
+				if(numberAppliance>0){
+					preFilteredArrAppliances.push(item);
+			
+				}
+			}else{
+				preFilteredArrAppliances=preFilteredArrRecipes;
+			
+			}
+		});
+
+
+	// Ingredients search
+
+	let preFilteredArrIngredients=new Array();
+
+	if (selectedIngredients.length > 0) {
+	preFilteredArrAppliances.forEach(item => {
+		//console.log(item);
+		let numberIngredients = 0;
+
+					selectedIngredients.forEach(ingredient => {
+						
+						item.ingredients.forEach(ingredientItem =>{
+				
+						if (ingredient == ingredientItem.ingredient) 
+						numberIngredients++;
+					});
+				});
+
+				if(numberIngredients==selectedIngredients.length){
+					preFilteredArrIngredients.push(item);
+			
+				}	
+				
+			});
+
+		}else{
+			preFilteredArrIngredients=preFilteredArrAppliances;
+		
+		}
+
+
+			console.log(preFilteredArrIngredients);
+			console.log(preFilteredArrIngredients.length);
+
+	// Ustensils search
+
+	let preFilteredArrUstensils=new Array();
+
+	if (selectedUstensils.length > 0) {
+	preFilteredArrIngredients.forEach(item => {
+	
+		let numberUstensils = 0;
+
+		selectedUstensils.forEach(ustensil => {
+						
+						item.ustensils.forEach(ustensilItem =>{
+							console.log(ustensil);
+							console.log(ustensilItem);
+						if (ustensil ==capitalizeWord(ustensilItem)) 
+						numberUstensils++;
+					console.log(numberUstensils);
+					});
+				});
+
+				if(numberUstensils==selectedUstensils.length){
+					preFilteredArrUstensils.push(item);
+			
+				}	
+				
+			});
+
+		}else{
+			preFilteredArrUstensils=preFilteredArrIngredients;
+		
+		}
+
+		console.log(preFilteredArrUstensils);
+		console.log(preFilteredArrUstensils.length);
+
+
+		filteredArr = preFilteredArrUstensils;
+
+		consoleOutput("Après second filtre", 1, 1);
+		console.log(filteredArr);
+
+		filterSelectListOptionsSelected(filteredArr);
+
+		displayData(filteredArr);
+
+		updateRecipesNumber(filteredArr);
+		clearSelectOptionsListeners();
+		setIngredientsListSelect(getFullIngredientsList(filteredArr));
+
+		setUstensilsListSelect(getFullUstensilsList(filteredArr));
+
+		setAppliancesListSelect(getFullAppliancesList(filteredArr));
+
+		selectOptionClick();
 	}
-
-	consoleOutput("Après second filtre", 1, 1);
-	consoleOutput(filteredArr, 1, 1);
-	displayData(filteredArr);
-	updateRecipesNumber(filteredArr);
-	setIngredientsListSelect(getFullIngredientsList(filteredArr));
-
-	setUstensilsListSelect(getFullUstensilsList(filteredArr));
-
-	setAppliancesListSelect(getFullAppliancesList(filteredArr));
-
-	selectOptionClick();
 }
 async function init() {
 	// Load Data - Ingredients - Ustensils - Appliances

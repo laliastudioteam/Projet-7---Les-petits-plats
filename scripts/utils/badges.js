@@ -15,7 +15,8 @@ function closeBadge(badge) {
 	const selectedOptionToClose =
 		document.querySelector(
 			"[data-type='" + type + "'][data-content='" + text + "']"
-		) !== null;
+		)
+		console.log(selectedOptionToClose);
 	if (selectedOptionToClose) {
 		consoleOutput("maintenant on supprime l'option selectionnée", 1, 1);
 

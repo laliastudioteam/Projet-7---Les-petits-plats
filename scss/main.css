@@ -273,7 +273,7 @@ mark {
   width: 100%;
   opacity: 0;
   animation-name: fadeIn;
-  animation-duration: 2.7730127048s;
+  animation-duration: 2.3674281846s;
   animation-fill-mode: forwards;
 }
 .card-recipe:hover {
@@ -517,7 +517,6 @@ mark {
   justify-content: flex-start;
   flex-direction: row;
   align-items: center;
-  background-color: #FFD15B;
   padding: 15px;
   border-radius: 20px;
   box-sizing: border-box;
@@ -529,8 +528,19 @@ mark {
   animation-duration: 2s;
   animation-fill-mode: forwards;
 }
-.badge-option__text {
+.badge-option__ingredient {
+  background-color: #FFD15B;
   color: #1B1B1B;
+}
+.badge-option__appliance {
+  background-color: #7A7A7A;
+  color: #ffffff;
+}
+.badge-option__ustensil {
+  background-color: #1B1B1B;
+  color: #FFD15B;
+}
+.badge-option__text {
   font-size: 14px;
   font-weight: 500;
   font-family: "Manrope", sans-serif;
