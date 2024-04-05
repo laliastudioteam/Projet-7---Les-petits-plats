@@ -81,11 +81,11 @@ function search() {
 			changeInformations(
 				"Recherche de : " + inputMainSearchValue + " parmi les recettes"
 			);
-			console.log(typeof preFilteredArr);
+	
 		} else {
 			consoleOutput("Recherche sans mot clé", 1, 1);
 			preFilteredArr = recipes;
-			console.log(typeof preFilteredArr);
+
 		}
 
 		//	consoleOutput(preFilteredArr, 1, 1);
@@ -153,7 +153,7 @@ function search() {
 	} else if (searchMethod["method"] == 2) {
 
 		let preFilteredArrRecipes = new Array();
-		console.log("second search method");
+
 		// If search min lenght ok
 		if (inputMainSearchLength >= minSearchLength) {
 			recipes.forEach(item => {
@@ -167,7 +167,7 @@ function search() {
 				}
 			});
 
-			console.log(preFilteredArrRecipes);
+
 			consoleOutput("Apres filter", 1, 1);
 			consoleOutput(preFilteredArrRecipes, 1, 1);
 			changeInformations(
@@ -179,8 +179,7 @@ function search() {
 			});
 		}
 
-		console.log(typeof preFilteredArrRecipes);
-		console.log(preFilteredArrRecipes);
+	
 
 
 		let preFilteredArrAppliances=new Array();
@@ -213,7 +212,7 @@ function search() {
 
 	if (selectedIngredients.length > 0) {
 	preFilteredArrAppliances.forEach(item => {
-		//console.log(item);
+
 		let numberIngredients = 0;
 
 					selectedIngredients.forEach(ingredient => {
@@ -238,8 +237,6 @@ function search() {
 		}
 
 
-			console.log(preFilteredArrIngredients);
-			console.log(preFilteredArrIngredients.length);
 
 	// Ustensils search
 
@@ -253,11 +250,10 @@ function search() {
 		selectedUstensils.forEach(ustensil => {
 						
 						item.ustensils.forEach(ustensilItem =>{
-							console.log(ustensil);
-							console.log(ustensilItem);
+						
 						if (ustensil ==capitalizeWord(ustensilItem)) 
 						numberUstensils++;
-					console.log(numberUstensils);
+		
 					});
 				});
 
@@ -273,14 +269,10 @@ function search() {
 		
 		}
 
-		console.log(preFilteredArrUstensils);
-		console.log(preFilteredArrUstensils.length);
-
-
 		filteredArr = preFilteredArrUstensils;
 
 		consoleOutput("Après second filtre", 1, 1);
-		console.log(filteredArr);
+
 
 		filterSelectListOptionsSelected(filteredArr);
 
