@@ -13,4 +13,4 @@ const markSearchWordsFound = true;
 
 const consoleOutputable = 0;
 
-const searchMethod = {method:2, type:"every"};
+const searchMethod = {method:1, type:"every"};
