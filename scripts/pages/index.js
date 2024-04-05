@@ -85,7 +85,7 @@ function search() {
 		} else {
 			consoleOutput("Recherche sans mot clé", 1, 1);
 			preFilteredArr = recipes;
-
+return;
 		}
 
 		//	consoleOutput(preFilteredArr, 1, 1);
@@ -123,19 +123,9 @@ function search() {
 			consoleOutput("Type de recherche invalide", 1, 1);
 		}
 
-		//	Different try methodes / code
-		//	(selectedAppliances.length === 0 || selectedAppliances.includes(item.appliance))
-		//	selectedIngredients.every(ingredient => item.ingredients.includes(ingredient));
-
 		consoleOutput("Après second filtre", 1, 1);
 		consoleOutput(filteredArr, 1, 1);
-
-		// Simple Methode through whole data
-		//const filteredArr = recipes.filter(obj =>
-		//		JSON.stringify(obj)
-		//			.toLowerCase()
-		//			.includes(inputMainSearchValue.toString().toLowerCase())
-		//	);
+	
 
 		filterSelectListOptionsSelected(filteredArr);
 
@@ -177,6 +167,7 @@ function search() {
 			recipes.forEach(item => {
 				preFilteredArrRecipes.push(item);
 			});
+			return;
 		}
 
 	
