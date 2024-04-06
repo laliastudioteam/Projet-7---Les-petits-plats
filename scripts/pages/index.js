@@ -58,6 +58,7 @@ function mainSearch() {
 }
 
 function search() {
+	console.log("search");
 	const inputMainSearchValue = inputMainSearch.value.toLowerCase();
 
 	consoleOutput("searching for :" + inputMainSearch.value, 1, 1);
@@ -81,11 +82,11 @@ function search() {
 			changeInformations(
 				"Recherche de : " + inputMainSearchValue + " parmi les recettes"
 			);
-		
+	
 		} else {
 			consoleOutput("Recherche sans mot clé", 1, 1);
 			preFilteredArr = recipes;
-
+//return;
 		}
 
 		//	consoleOutput(preFilteredArr, 1, 1);
@@ -123,37 +124,14 @@ function search() {
 			consoleOutput("Type de recherche invalide", 1, 1);
 		}
 
-		//	Different try methodes / code
-		//	(selectedAppliances.length === 0 || selectedAppliances.includes(item.appliance))
-		//	selectedIngredients.every(ingredient => item.ingredients.includes(ingredient));
-
 		consoleOutput("Après second filtre", 1, 1);
 		consoleOutput(filteredArr, 1, 1);
-
-		// Simple Methode through whole data
-		//const filteredArr = recipes.filter(obj =>
-		//		JSON.stringify(obj)
-		//			.toLowerCase()
-		//			.includes(inputMainSearchValue.toString().toLowerCase())
-		//	);
-
-		filterSelectListOptionsSelected(filteredArr);
-
-		displayData(filteredArr);
-
-		updateRecipesNumber(filteredArr);
-		clearSelectOptionsListeners();
-		setIngredientsListSelect(getFullIngredientsList(filteredArr));
-
-		setUstensilsListSelect(getFullUstensilsList(filteredArr));
-
-		setAppliancesListSelect(getFullAppliancesList(filteredArr));
 
 		// Second Search method
 	} else if (searchMethod["method"] == 2) {
 
 		let preFilteredArrRecipes = new Array();
-	
+
 		// If search min lenght ok
 		if (inputMainSearchLength >= minSearchLength) {
 			recipes.forEach(item => {
@@ -167,7 +145,7 @@ function search() {
 				}
 			});
 
-	
+
 			consoleOutput("Apres filter", 1, 1);
 			consoleOutput(preFilteredArrRecipes, 1, 1);
 			changeInformations(
@@ -177,9 +155,10 @@ function search() {
 			recipes.forEach(item => {
 				preFilteredArrRecipes.push(item);
 			});
+			//return;
 		}
 
-
+	
 
 
 		let preFilteredArrAppliances=new Array();
@@ -238,7 +217,6 @@ function search() {
 
 
 
-
 	// Ustensils search
 
 	let preFilteredArrUstensils=new Array();
@@ -251,10 +229,10 @@ function search() {
 		selectedUstensils.forEach(ustensil => {
 						
 						item.ustensils.forEach(ustensilItem =>{
-					
+						
 						if (ustensil ==capitalizeWord(ustensilItem)) 
 						numberUstensils++;
-					
+		
 					});
 				});
 
@@ -270,28 +248,46 @@ function search() {
 		
 		}
 
-	
-
-
 		filteredArr = preFilteredArrUstensils;
 
 		consoleOutput("Après second filtre", 1, 1);
 
 
-		filterSelectListOptionsSelected(filteredArr);
 
-		displayData(filteredArr);
 
-		updateRecipesNumber(filteredArr);
+
+
+
+	
+	}
+
+	filterSelectListOptionsSelected(filteredArr);
+
+
+
+
+	if(JSON.stringify(previousfilteredArr) !== JSON.stringify(filteredArr)){
+
+	displayData(filteredArr);
+}
+
+	previousfilteredArr=filteredArr;
+
+	updateRecipesNumber(filteredArr);
 		clearSelectOptionsListeners();
-		setIngredientsListSelect(getFullIngredientsList(filteredArr));
 
-		setUstensilsListSelect(getFullUstensilsList(filteredArr));
+		visibleIngredients=getFullIngredientsList(filteredArr);
+		console.log(visibleIngredients);
+		setIngredientsListSelect(visibleIngredients);
 
-		setAppliancesListSelect(getFullAppliancesList(filteredArr));
+		visibleUstensils=(getFullUstensilsList(filteredArr));
+		setUstensilsListSelect(visibleUstensils);
+
+		visibleAppliances=(getFullAppliancesList(filteredArr));
+		setAppliancesListSelect(visibleAppliances);
 
 		selectOptionClick();
-	}
+
 }
 async function init() {
 	// Load Data - Ingredients - Ustensils - Appliances
