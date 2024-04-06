@@ -11,6 +11,6 @@ const titleFilters = {"ingredient":"ingrédient","appliance":"appareil","ustensi
 const minSearchLength = 3;
 const markSearchWordsFound = true;
 
-const consoleOutputable = 0;
+const consoleOutputable = 1;
 
-const searchMethod = {method:1, type:"every"};
+const searchMethod = {method:1, type:"length"};

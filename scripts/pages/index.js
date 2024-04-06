@@ -111,11 +111,11 @@ function search() {
 				item =>
 					(selectedAppliances.length === 0 ||
 						selectedAppliances.includes(item.appliance)) &&
-					item.ingredients.filter(
-						selectedIngredients.every(ingredient => item.ingredients.includes(ingredient))
+					item.ingredients.filter(ingredient =>
+						selectedIngredients.every(selectedIngredient => item.ingredients.includes(ingredient.ingredient))
 					) &&
-					item.ustensils.filter(
-						selectedUstensils.every(ustensil =>
+					item.ustensils.filter(ustensil=>
+						selectedUstensils.every(selectedUstensil =>
 							item.ustensils.includes(capitalizeWord(ustensil))
 						)
 					)
