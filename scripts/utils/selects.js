@@ -4,9 +4,15 @@ const selectedIngredients = new Array();
 const selectedAppliances = new Array();
 const selectedUstensils = new Array();
 
+let visibleIngredients = new Array();
+let visibledAppliances = new Array();
+let visibleUstensils = new Array();
+
 const titleSelectIngredients = "Ingredients";
 const titleSelectAppliances = "Appareils";
 const titleSelectUstensils = "Ustensiles";
+
+let previousfilteredArr = new Array();
 
 function clickOutsideSelect() {
 	const selectIngredientsList2 = document.querySelectorAll(
@@ -153,7 +159,7 @@ function searchIntoIngredientsOptions() {
 
 	const inputIngredients = document.getElementById("input-ingredients");
 	inputIngredients.addEventListener("input", () => {
-		const inputIngredientsValue = inputIngredients.value;
+		const inputIngredientsValue = inputIngredients.value.toLowerCase();
 		const inputIngredientsLength = inputIngredientsValue.length;
 
 		if (inputIngredientsLength >= minSearchLength) {
@@ -164,14 +170,14 @@ function searchIntoIngredientsOptions() {
 
 			consoleOutput("Search for : " + inputIngredientsValue);
 
-			const filteredArr = fullRecipesComponentsListOrdered["ingredients"].filter(
+			const filteredArr = visibleIngredients.filter(
 				val => val.toLowerCase().includes(inputIngredientsValue)
 			);
 			consoleOutput(filteredArr);
 			setIngredientsListSelect(filteredArr);
 			selectOptionClick();
 		} else {
-			setIngredientsListSelect(fullRecipesComponentsListOrdered["ingredients"]);
+			setIngredientsListSelect(visibleIngredients);
 			selectOptionClick();
 		}
 	});
@@ -264,7 +270,7 @@ function searchIntoUstensilsOptions() {
 
 	const inputUstensils = document.getElementById("input-ustensils");
 	inputUstensils.addEventListener("input", () => {
-		const inputUstensilsValue = inputUstensils.value;
+		const inputUstensilsValue = inputUstensils.value.toLowerCase();
 		const inputUstensilsLength = inputUstensilsValue.length;
 
 		if (inputUstensilsLength >= minSearchLength) {
@@ -275,14 +281,14 @@ function searchIntoUstensilsOptions() {
 
 			consoleOutput("Search for : " + inputUstensilsValue,1,1);
 
-			const filteredArr = fullRecipesComponentsListOrdered["ustensils"].filter(val =>
+			const filteredArr = visibleUstensils.filter(val =>
 				val.toLowerCase().includes(inputUstensilsValue)
 			);
 			consoleOutput(filteredArr,1,1);
 			setUstensilsListSelect(filteredArr);
 			selectOptionClick();
 		} else {
-			setUstensilsListSelect(fullRecipesComponentsListOrdered["ustensils"]);
+			setUstensilsListSelect(visibleUstensils);
 			selectOptionClick();
 		}
 	});
@@ -293,7 +299,7 @@ function searchIntoAppliancesOptions() {
 
 	const inputAppliances = document.getElementById("input-appliances");
 	inputAppliances.addEventListener("input", () => {
-		const inputAppliancesValue = inputAppliances.value;
+		const inputAppliancesValue = inputAppliances.value.toLowerCase();
 		const inputAppliancesLength = inputAppliancesValue.length;
 
 		if (inputAppliancesLength >= minSearchLength) {
@@ -304,14 +310,14 @@ function searchIntoAppliancesOptions() {
 
 			consoleOutput("Search for : " + inputAppliancesValue,1,1);
 
-			const filteredArr = fullRecipesComponentsListOrdered["appliances"].filter(val =>
+			const filteredArr = visibleAppliances.filter(val =>
 				val.toLowerCase().includes(inputAppliancesValue)
 			);
 			consoleOutput(filteredArr,1,1);
 			setAppliancesListSelect(filteredArr);
 			selectOptionClick();
 		} else {
-			setAppliancesListSelect(fullRecipesComponentsListOrdered["appliances"]);
+			setAppliancesListSelect(visibleAppliances);
 			selectOptionClick();
 		}
 	});
